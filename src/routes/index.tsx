@@ -1,11 +1,9 @@
 import React from 'react';
 import { Routes, Navigate, Route } from 'react-router-dom';
-import { Button } from '@mui/material';
-import { useAppThemeContext, useAppDrawerContext } from '../shared/contexts';
-import FirstPage from '../shared/components/FirstPage';
+import { useAppDrawerContext } from '../shared/contexts';
+import Dashboard from '../pages/dashboard/Dashboard';
 export const AppRoutes = () => {
-  const { toggleTheme } = useAppThemeContext();
-  const { toggleDrawerOpen, setDrawerOptions } = useAppDrawerContext();
+  const {setDrawerOptions } = useAppDrawerContext();
   React.useEffect(() =>{
     setDrawerOptions([
       {
@@ -22,7 +20,7 @@ export const AppRoutes = () => {
   }, [])
   return (
     <Routes>
-      <Route path="/pagina-inicial" element={<FirstPage />} />
+      <Route path="/pagina-inicial" element={<Dashboard/>} />
       <Route path="*" element={<Navigate to="/pagina-inicial" />} />
     </Routes>
   );
