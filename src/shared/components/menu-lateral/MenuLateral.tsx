@@ -12,26 +12,30 @@ import {
   useTheme,
 } from '@mui/material';
 import { Box } from '@mui/system';
-import { useAppDrawerContext } from '../../contexts';
+import { useAppDrawerContext, useAppThemeContext } from '../../contexts';
 import { useMatch, useNavigate, useResolvedPath } from 'react-router-dom';
 
-
-interface IListItemLinkProps{
+interface IListItemLinkProps {
   to: string;
   icon: string;
   label: string;
   onClick: (() => void) | undefined;
 }
-const ListItemLink: React.FC<IListItemLinkProps> = ({to, icon, label, onClick}) => {
-  const navigate = useNavigate()
+const ListItemLink: React.FC<IListItemLinkProps> = ({
+  to,
+  icon,
+  label,
+  onClick,
+}) => {
+  const navigate = useNavigate();
 
-  const resolvedPath = useResolvedPath(to)
-  const match = useMatch({path: resolvedPath.pathname, end: false})
-  console.log('match',match)
-  const handleClick = () =>{
-    navigate(to)
-    onClick?.()
-  }
+  const resolvedPath = useResolvedPath(to);
+  const match = useMatch({ path: resolvedPath.pathname, end: false });
+  console.log('match', match);
+  const handleClick = () => {
+    navigate(to);
+    onClick?.();
+  };
 
   return (
     <ListItemButton selected={!!match} onClick={handleClick}>
@@ -49,7 +53,10 @@ interface IMenuLateral {
 const MenuLateral: React.FC<IMenuLateral> = ({ children }) => {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
-  const { isDrawerOpen, toggleDrawerOpen, drawerOptions } = useAppDrawerContext();
+
+  const { isDrawerOpen, toggleDrawerOpen, drawerOptions } =
+    useAppDrawerContext();
+  const { toggleTheme } = useAppThemeContext();
   React.useEffect(() => {
     if (!smDown && isDrawerOpen === true) toggleDrawerOpen();
   }, [smDown]);
@@ -85,15 +92,25 @@ const MenuLateral: React.FC<IMenuLateral> = ({ children }) => {
 
           <Box flex={1}>
             <List component="nav" aria-label="main mailbox folders">
-              {drawerOptions.map(drawerOptions => (
+              {drawerOptions.map((drawerOptions) => (
                 <ListItemLink
-                key={drawerOptions.label}
-                icon={drawerOptions.icon}
-                label={drawerOptions.label}
-                to={drawerOptions.path}
-                onClick={smDown ? toggleDrawerOpen: undefined}
+                  key={drawerOptions.label}
+                  icon={drawerOptions.icon}
+                  label={drawerOptions.label}
+                  to={drawerOptions.path}
+                  onClick={smDown ? toggleDrawerOpen : undefined}
                 ></ListItemLink>
               ))}
+            </List>
+          </Box>
+          <Box>
+            <List component="nav" aria-label="main mailbox folders">
+              <ListItemButton onClick={toggleTheme}>
+                <ListItemIcon>
+                  <Icon>dark_mode</Icon>
+                </ListItemIcon>
+                <ListItemText primary="Alternar Tema" />
+              </ListItemButton>
             </List>
           </Box>
         </Box>
