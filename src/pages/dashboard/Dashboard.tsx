@@ -1,5 +1,5 @@
 import React from 'react'
-import ToolBar from '../../shared/components/tool-bar/ToolBar'
+import ToolBar from '../../shared/components/list-tools/ListTools'
 import BaseLayout from '../../shared/layouts/BaseLayout'
 
 const Dashboard: React.FC = () => {
