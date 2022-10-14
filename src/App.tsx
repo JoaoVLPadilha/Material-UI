@@ -11,7 +11,7 @@ function App() {
       <AppDrawerProvider>
         <BrowserRouter>
           <MenuLateral>
-            <FirstPage/>
+            {/* <FirstPage/> */}
             <AppRoutes />
           </MenuLateral>
         </BrowserRouter>
