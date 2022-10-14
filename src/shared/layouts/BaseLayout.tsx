@@ -12,12 +12,12 @@ import { useAppDrawerContext } from '../contexts';
 interface IBaseLayoutProps {
   children?: React.ReactNode;
   title: string;
-  toolBar: React.ReactNode | undefined;
+  listTools: React.ReactNode | undefined;
 }
 const BaseLayout: React.FC<IBaseLayoutProps> = ({
   children,
   title,
-  toolBar,
+  listTools,
 }) => {
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
@@ -40,7 +40,7 @@ const BaseLayout: React.FC<IBaseLayoutProps> = ({
         )}
         <Typography variant={smDown ? "h5" : mdDown ? "h4" : "h3"} whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis">{title}</Typography>
       </Box>
-      {toolBar && <Box>{toolBar}</Box>}
+      {listTools && <Box>{listTools}</Box>}
       <Box flex={1} overflow="auto">{children}</Box>
     </Box>
   );
