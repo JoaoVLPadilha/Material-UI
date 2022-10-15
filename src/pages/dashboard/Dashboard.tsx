@@ -6,7 +6,7 @@ const Dashboard: React.FC = () => {
     <BaseLayout 
     title='Home Page' 
     listTools={
-      <DetailTools></DetailTools>
+      <DetailTools showButtonSaveGoBack></DetailTools>
     }
     >
       Testando
