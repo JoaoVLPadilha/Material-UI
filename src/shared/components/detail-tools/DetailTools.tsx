@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Typography,
   Box,
   useTheme,
   Skeleton,
@@ -7,6 +8,7 @@ import {
   Icon,
   Button,
   Divider,
+  useMediaQuery,
 } from '@mui/material';
 
 interface IDetailToolsProps {
@@ -52,6 +54,8 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
   onClickBack,
 }) => {
   const theme = useTheme();
+  const mdDown = useMediaQuery(theme.breakpoints.down('md'));
+  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
   return (
     <Box
       gap={1}
@@ -87,7 +91,14 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
             startIcon={<Icon>save</Icon>}
             onClick={onClickSave}
           >
-            Save
+            <Typography
+              variant="button"
+              whiteSpace="nowrap"
+              textOverflow="ellipsis"
+              overflow="hidden"
+            >
+              Save
+            </Typography>
           </Button>
         )
       )}
@@ -104,12 +115,19 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
               startIcon={<Icon>add</Icon>}
               onClick={onClickNew}
             >
-              {buttonNewText}
+              <Typography
+                variant="button"
+                whiteSpace="nowrap"
+                textOverflow="ellipsis"
+                overflow="hidden"
+              >
+                {buttonNewText}
+              </Typography>
             </Button>
           )}
         </Skeleton>
       ) : (
-        showButtonNew && (
+        showButtonNew && !smDown && (
           <Button
             color="primary"
             variant="outlined"
@@ -117,7 +135,14 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
             startIcon={<Icon>add</Icon>}
             onClick={onClickNew}
           >
-            {buttonNewText}
+            <Typography
+              variant="button"
+              whiteSpace="nowrap"
+              textOverflow="ellipsis"
+              overflow="hidden"
+            >
+              {buttonNewText}
+            </Typography>
           </Button>
         )
       )}
@@ -147,7 +172,14 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
             startIcon={<Icon>delete</Icon>}
             onClick={onClickDelete}
           >
-            Delete
+            <Typography
+              variant="button"
+              whiteSpace="nowrap"
+              textOverflow="ellipsis"
+              overflow="hidden"
+            >
+              Delete
+            </Typography>
           </Button>
         )
       )}
@@ -165,12 +197,19 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
               startIcon={<Icon>save</Icon>}
               onClick={onClickSaveGoBack}
             >
-              Save and go back
+              <Typography
+                variant="button"
+                whiteSpace="nowrap"
+                textOverflow="ellipsis"
+                overflow="hidden"
+              >
+                Save and go back
+              </Typography>
             </Button>
           )}
         </Skeleton>
       ) : (
-        showButtonSaveGoBack && (
+        showButtonSaveGoBack && !smDown && !mdDown && (
           <Button
             color="primary"
             variant="outlined"
@@ -178,12 +217,19 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
             startIcon={<Icon>save</Icon>}
             onClick={onClickSaveGoBack}
           >
-            Save and go back
+            <Typography
+              variant="button"
+              whiteSpace="nowrap"
+              textOverflow="ellipsis"
+              overflow="hidden"
+            >
+              Save and go back
+            </Typography>
           </Button>
         )
       )}
       {/* Button Save and go Back Fim */}
-      <Divider variant="middle" orientation="vertical" />
+      {!smDown && <Divider variant="middle" orientation="vertical" />}
       {showButtonBackLoading ? (
         <Skeleton>
           {showButtonBack && (
@@ -194,7 +240,14 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
               startIcon={<Icon>arrow_back</Icon>}
               onClick={onClickBack}
             >
-              Go Back
+              <Typography
+                variant="button"
+                whiteSpace="nowrap"
+                textOverflow="ellipsis"
+                overflow="hidden"
+              >
+                Go back
+              </Typography>
             </Button>
           )}
         </Skeleton>
@@ -207,7 +260,14 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
             startIcon={<Icon>arrow_back</Icon>}
             onClick={onClickBack}
           >
-            Go Back
+              <Typography
+                variant="button"
+                whiteSpace="nowrap"
+                textOverflow="ellipsis"
+                overflow="hidden"
+              >
+                Go back
+              </Typography>
           </Button>
         )
       )}
