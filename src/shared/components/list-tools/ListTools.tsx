@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Button, Icon, Paper, TextField, useTheme } from '@mui/material';
+import { Environment } from '../../environment';
 
 interface IListToolsProps {
   textSearch?: string;
@@ -34,7 +35,7 @@ const ListTools: React.FC<IListToolsProps> = ({
       {showSearchInput && (
         <TextField
           size="small"
-          placeholder="Search..."
+          placeholder={Environment.SEARCH_PLACEHOLDER}
           value={textSearch}
           onChange={(e) => onChangeTextSearch?.(e.target.value)}
         />
