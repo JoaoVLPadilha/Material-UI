@@ -109,7 +109,7 @@ const MenuLateral: React.FC<IMenuLateral> = ({ children }) => {
                 <ListItemIcon>
                   <Icon>dark_mode</Icon>
                 </ListItemIcon>
-                <ListItemText primary="Alternar Tema" />
+                <ListItemText primary="Toggle theme" />
               </ListItemButton>
             </List>
           </Box>
