@@ -1,9 +1,14 @@
 {
-  "pessoas": [
+  "people": [
     {
       "id": 1,
-      "nome": "Padilha",
-      "sobrenome": "Lopes"
+      "name": "Padilha",
+      "lastName": "Lopes"
+    },
+    {
+      "id": 2,
+      "name": "Juscelino",
+      "lastName": "Padilha"
     }
   ]
 }
