@@ -69,7 +69,7 @@ export const DetailTools: React.FC<IDetailToolsProps> = ({
     >
       {/* Button Save Ínicio */}
       {showButtonSaveLoading ? (
-        <Skeleton width={110} height={60}>
+        <Skeleton>
           {showButtonSave && (
             <Button
               color="primary"
