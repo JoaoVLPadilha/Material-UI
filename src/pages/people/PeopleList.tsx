@@ -2,7 +2,6 @@ import React from 'react';
 import {
   LinearProgress,
   Paper,
-  Skeleton,
   Table,
   TableBody,
   TableCell,
