@@ -2,13 +2,23 @@
   "people": [
     {
       "id": 1,
-      "name": "Padilha",
-      "lastName": "Lopes"
+      "lastName": "Padilha",
+      "email": "joao@gmail.com"
     },
     {
       "id": 2,
-      "name": "Juscelino",
-      "lastName": "Padilha"
+      "lastName": "Juscelino",
+      "email": "juscelino@gmail.com"
+    },
+    {
+      "id": 3,
+      "lastName": "Juscelino",
+      "email": "juscelino@gmail.com"
+    },
+    {
+      "id": 4,
+      "lastName": "Juscelino",
+      "email": "juscelino@gmail.com"
     }
   ]
 }
