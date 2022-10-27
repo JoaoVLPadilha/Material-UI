@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Navigate, Route } from 'react-router-dom';
 import { useAppDrawerContext } from '../shared/contexts';
 import Dashboard from '../pages/dashboard/Dashboard';
-import PeopleList from '../pages/cities/PeopleList';
+import PeopleList from '../pages/people/PeopleList';
 export const AppRoutes = () => {
   const {setDrawerOptions } = useAppDrawerContext();
   React.useEffect(() =>{
