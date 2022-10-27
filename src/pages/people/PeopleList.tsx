@@ -1,11 +1,13 @@
 import React from 'react';
 import {
+  LinearProgress,
   Paper,
   Skeleton,
   Table,
   TableBody,
   TableCell,
   TableContainer,
+  TableFooter,
   TableHead,
   TableRow,
 } from '@mui/material';
@@ -18,10 +20,11 @@ import {
 import ListTools from '../../shared/components/list-tools/ListTools';
 import BaseLayout from '../../shared/layouts/BaseLayout';
 import { useDebounce } from '../../shared/hooks';
+import { Environment } from '../../shared/environment';
 
 const PeopleList: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { debounce } = useDebounce(1000);
+  const { debounce } = useDebounce(3000, false);
 
   const [rows, setRows] = React.useState<IListPeople[]>();
   const [totalCount, setTotalCount] = React.useState(0);
@@ -87,6 +90,17 @@ const PeopleList: React.FC = () => {
               );
             })}
           </TableBody>
+          {(
+            totalCount === 0 && !isLoading && <caption>{Environment.EMPTY_LIST}</caption>
+          )}
+          {isLoading &&
+          <TableFooter>
+            <TableRow>
+              <TableCell colSpan={3}>
+            <LinearProgress variant='indeterminate'/>
+              </TableCell>
+            </TableRow>
+          </TableFooter>}
         </Table>
       </TableContainer>
     </BaseLayout>
