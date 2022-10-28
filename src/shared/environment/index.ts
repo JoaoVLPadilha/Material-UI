@@ -2,7 +2,7 @@ export const Environment = {
   /**
    * Defines the quantity of rows to be loaded in the application
    */
-  ROW_LIMITS: 10,
+  ROW_LIMITS: 5,
 
   SEARCH_PLACEHOLDER: 'Search...',
 
