@@ -110,7 +110,7 @@ const PeopleList: React.FC = () => {
                     <IconButton size='small' onClick={() => handleDelete(row.id)}>
                       <Icon>delete</Icon>
                     </IconButton>
-                    <IconButton size='small' onClick={() => navigate(`people/detail/${row.id}`)}>
+                    <IconButton size='small' onClick={() => navigate(`detail/${row.id}`)}>
                       <Icon>edit</Icon>
                     </IconButton>
                   </TableCell>

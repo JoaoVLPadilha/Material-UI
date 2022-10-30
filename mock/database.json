@@ -1,11 +1,6 @@
 {
   "people": [
     {
-      "id": 2,
-      "lastName": "Juscelino",
-      "email": "juscelino@gmail.com"
-    },
-    {
       "id": 3,
       "lastName": "Juscelino",
       "email": "juscelino@gmail.com"
