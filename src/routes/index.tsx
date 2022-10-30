@@ -3,6 +3,7 @@ import { Routes, Navigate, Route } from 'react-router-dom';
 import { useAppDrawerContext } from '../shared/contexts';
 import Dashboard from '../pages/dashboard/Dashboard';
 import PeopleList from '../pages/people/PeopleList';
+import PeopleDetail from '../pages/people/PeopleDetail';
 export const AppRoutes = () => {
   const {setDrawerOptions } = useAppDrawerContext();
   React.useEffect(() =>{
@@ -28,8 +29,8 @@ export const AppRoutes = () => {
     <Routes>
       <Route path="/pagina-inicial" element={<Dashboard/>} />
       <Route path="/people" element={<PeopleList/>} />
-      <Route path="/cities/detail/:id" element={<PeopleList/>} />
-      <Route path="*" element={<Navigate to="/pagina-inicial" />} />
+      <Route path="/people/detail/:id" element={<PeopleDetail/>} />
+      {/* <Route path="*" element={<Navigate to="/pagina-inicial" />} /> */}
     </Routes>
   );
 };
