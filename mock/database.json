@@ -59,6 +59,18 @@
       "id": 15,
       "lastName": "Juscelino",
       "email": "juscelino@gmail.com"
+    },
+    {
+      "id": 16,
+      "lastName": "Silva Adidas",
+      "email": "silva@gmail.com",
+      "cityId": "4"
+    },
+    {
+      "id": 17,
+      "lastName": "JvPadilha",
+      "email": "jvpadilha@gmail.com",
+      "cityId": "3"
     }
   ]
 }
