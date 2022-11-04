@@ -1,12 +1,13 @@
 import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { DetailTools } from '../../shared/components';
-import BaseLayout from '../../shared/layouts/BaseLayout';
-import { PeopleService } from '../../shared/services/api/people/PeopleService';
-import { Form } from '@unform/web';
-import { VTextField } from '../../shared/forms';
-import { FormHandles } from '@unform/core';
 import { Box, Grid, LinearProgress, Paper, Typography } from '@mui/material';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Form } from '@unform/web';
+import * as yup from 'yup';
+
+import { PeopleService } from '../../shared/services/api/people/PeopleService';
+import { VTextField, useVForm, IVFormErrors } from '../../shared/forms';
+import BaseLayout from '../../shared/layouts/BaseLayout';
+import { DetailTools } from '../../shared/components';
 
 interface IFormData {
   email: string;
@@ -14,17 +15,21 @@ interface IFormData {
   cityId: number;
 }
 
+const formValidationSchema: yup.SchemaOf<IFormData> = yup.object().shape({
+  lastName: yup.string().required().min(3),
+  email: yup.string().required().email(),
+  cityId: yup.number().required(),
+});
+
 const PeopleDetail: React.FC = () => {
   const { id = 'new' } = useParams<'id'>();
   const navigate = useNavigate();
 
-  const formRef = React.useRef<FormHandles>(null);
+  const { formRef, save, saveAndClose, IsSaveAndClose } = useVForm();
 
   const [isLoading, setIsLoading] = React.useState(false);
   const [userData, setUserData] = React.useState({});
   const [name, setName] = React.useState('');
-
-  React.useEffect(() => {console.log(name)}, [name])
 
   React.useEffect(() => {
     if (id !== 'new') {
@@ -42,23 +47,55 @@ const PeopleDetail: React.FC = () => {
           formRef.current?.setData(result);
         }
       });
+    } else {
+      formRef.current?.setData({
+        lastName: '',
+        cityId: '',
+        email: '',
+      });
     }
   }, [id]);
 
   const handleSave = (data: IFormData) => {
-    setIsLoading(true);
-    if (id === 'new') {
-      PeopleService.create(data).then((result) => {
-        setIsLoading(false);
-        if (result instanceof Error) alert(result.message);
-        else navigate(`/people/detail/${result}`);
+    formValidationSchema
+      .validate(data, { abortEarly: false })
+      .then((validateData) => {
+        setIsLoading(true);
+        if (id === 'new') {
+          PeopleService.create(validateData).then((result) => {
+            setIsLoading(false);
+            if (result instanceof Error) alert(result.message);
+            else {
+              if (IsSaveAndClose()) {
+                navigate(`/people`);
+              } else {
+                navigate(`/people/detail/${result}`);
+              }
+            }
+          });
+        } else {
+          PeopleService.updateById(+id, { id: +id, ...validateData }).then(
+            (result) => {
+              setIsLoading(false);
+              if (result instanceof Error) alert(result.message);
+              else {
+                if (IsSaveAndClose()) {
+                  navigate(`/people`);
+                }
+              }
+            },
+          );
+        }
+      })
+      .catch((errors: yup.ValidationError) => {
+        const validationErrors: IVFormErrors = {};
+
+        errors.inner.forEach((error) => {
+          if (!error.path) return;
+          validationErrors[error.path] = error.message;
+          formRef.current?.setErrors(validationErrors);
+        });
       });
-    } else {
-      PeopleService.updateById(+id, { id: +id, ...data }).then((result) => {
-        setIsLoading(false);
-        if (result instanceof Error) alert(result.message);
-      });
-    }
   };
 
   const handleDelete = (id: number) => {
@@ -83,13 +120,13 @@ const PeopleDetail: React.FC = () => {
           showButtonDelete={id !== 'new'}
           showButtonBack
           showButtonSaveGoBack
-          onClickSave={() => formRef.current?.submitForm()}
+          onClickSave={() => save()}
           onClickDelete={() => {
             handleDelete(+id);
           }}
           onClickBack={() => navigate('/people')}
           onClickNew={() => navigate('/people/detail/new')}
-          onClickSaveGoBack={() => formRef.current?.submitForm()}
+          onClickSaveGoBack={() => saveAndClose()}
         />
       }
     >
@@ -109,23 +146,39 @@ const PeopleDetail: React.FC = () => {
                 </Grid>
               )}
               <Grid item>
-                <Typography variant="h6">Geral</Typography>
+                <Typography variant="h6">General</Typography>
               </Grid>
 
               <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                <VTextField disabled={isLoading} fullWidth label="Last Name" name="lastName" onChange={(e) => setName(e.target.value)}/>
+                <VTextField
+                  disabled={isLoading}
+                  fullWidth
+                  label="Last Name"
+                  name="lastName"
+                  onChange={(e) => setName(e.target.value)}
+                />
               </Grid>
             </Grid>
 
             <Grid container item direction="row" spacing={2}>
               <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                <VTextField disabled={isLoading} fullWidth label="E-mail" name="email" />
+                <VTextField
+                  disabled={isLoading}
+                  fullWidth
+                  label="E-mail"
+                  name="email"
+                />
               </Grid>
             </Grid>
 
             <Grid container item direction="row" spacing={2}>
               <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                <VTextField disabled={isLoading} fullWidth label="City Id" name="cityId" />
+                <VTextField
+                  disabled={isLoading}
+                  fullWidth
+                  label="City Id"
+                  name="cityId"
+                />
               </Grid>
             </Grid>
           </Grid>
