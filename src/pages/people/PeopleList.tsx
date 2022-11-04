@@ -13,7 +13,7 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Navigate, useNavigate, useSearchParams } from 'react-router-dom';
 
 import {
   IListPeople,
@@ -82,6 +82,7 @@ const PeopleList: React.FC = () => {
           showSearchInput
           textSearch={search}
           textButtonNew="New"
+          onClickNew={() => navigate('detail/new')}
           onChangeTextSearch={(text) =>
             setSearchParams({  page: '1', search: text }, { replace: true })
           }
