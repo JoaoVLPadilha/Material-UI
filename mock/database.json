@@ -84,5 +84,15 @@
       "cityId": "3",
       "id": 19
     }
+  ],
+  "city": [
+    {
+      "id": 1,
+      "name": "São Paulo - sp"
+    },
+    {
+      "name": "Gold Cost",
+      "id": 3
+    }
   ]
 }
