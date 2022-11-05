@@ -4,6 +4,8 @@ import { useAppDrawerContext } from '../shared/contexts';
 import Dashboard from '../pages/dashboard/Dashboard';
 import PeopleList from '../pages/people/PeopleList';
 import PeopleDetail from '../pages/people/PeopleDetail';
+import CityList from '../pages/city/CityList';
+import CityDetail from '../pages/city/CityDetail';
 export const AppRoutes = () => {
   const {setDrawerOptions } = useAppDrawerContext();
   React.useEffect(() =>{
@@ -14,9 +16,9 @@ export const AppRoutes = () => {
         label: 'Home Page',
       },
       {
-        icon: 'star',
-        path: 'star page',
-        label: 'Star Page',
+        icon: 'location_city',
+        path: '/city',
+        label: 'Cities',
       },
       {
         icon: 'people',
@@ -30,6 +32,8 @@ export const AppRoutes = () => {
       <Route path="/pagina-inicial" element={<Dashboard/>} />
       <Route path="/people" element={<PeopleList/>} />
       <Route path="/people/detail/:id" element={<PeopleDetail/>} />
+      <Route path="/city" element={<CityList/>} />
+      <Route path="/city/detail/:id" element={<CityDetail/>} />
       {/* <Route path="*" element={<Navigate to="/pagina-inicial" />} /> */}
     </Routes>
   );
