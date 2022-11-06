@@ -12,7 +12,7 @@ import { useAppDrawerContext } from '../contexts';
 interface IBaseLayoutProps {
   children?: React.ReactNode;
   title: string;
-  listTools: React.ReactNode | undefined;
+  listTools?: React.ReactNode | undefined;
 }
 const BaseLayout: React.FC<IBaseLayoutProps> = ({
   children,
