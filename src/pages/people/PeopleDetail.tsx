@@ -8,6 +8,7 @@ import { PeopleService } from '../../shared/services/api/people/PeopleService';
 import { VTextField, useVForm, IVFormErrors } from '../../shared/forms';
 import BaseLayout from '../../shared/layouts/BaseLayout';
 import { DetailTools } from '../../shared/components';
+import AutocompleteCity from './components/AutocompleteCity';
 
 interface IFormData {
   email: string;
@@ -29,7 +30,7 @@ const PeopleDetail: React.FC = () => {
 
   const [isLoading, setIsLoading] = React.useState(false);
   const [userData, setUserData] = React.useState({});
-  const [name, setName] = React.useState('');
+  const [name, setName] = React.useState<string | null>(null);
 
   React.useEffect(() => {
     if (id !== 'new') {
@@ -50,13 +51,14 @@ const PeopleDetail: React.FC = () => {
     } else {
       formRef.current?.setData({
         lastName: '',
-        cityId: '',
+        cityId: undefined,
         email: '',
       });
     }
   }, [id]);
 
   const handleSave = (data: IFormData) => {
+    console.log(data)
     formValidationSchema
       .validate(data, { abortEarly: false })
       .then((validateData) => {
@@ -173,12 +175,7 @@ const PeopleDetail: React.FC = () => {
 
             <Grid container item direction="row" spacing={2}>
               <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                <VTextField
-                  disabled={isLoading}
-                  fullWidth
-                  label="City Id"
-                  name="cityId"
-                />
+                <AutocompleteCity isExternalLoading={isLoading}/>
               </Grid>
             </Grid>
           </Grid>

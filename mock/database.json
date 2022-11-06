@@ -3,7 +3,8 @@
     {
       "id": 3,
       "lastName": "Jussa",
-      "email": "juscelino@gmail.com"
+      "email": "juscelino@gmail.com",
+      "cityId": 6
     },
     {
       "id": 4,
@@ -13,7 +14,8 @@
     {
       "id": 5,
       "lastName": "Padilha",
-      "email": "joao@gmail.com"
+      "email": "joao@gmail.com",
+      "cityId": 7
     },
     {
       "id": 6,
@@ -93,6 +95,22 @@
     {
       "name": "Gold Cost",
       "id": 3
+    },
+    {
+      "name": "Registro",
+      "id": 4
+    },
+    {
+      "id": 5,
+      "name": "Miracatu"
+    },
+    {
+      "name": "Juquiá",
+      "id": 6
+    },
+    {
+      "name": "Taboão da Serra",
+      "id": 7
     }
   ]
 }
