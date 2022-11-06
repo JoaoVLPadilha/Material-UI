@@ -51,7 +51,7 @@ const CityDetail: React.FC = () => {
   }, [id]);
 
   const handleSave = (data: IFormData) => {
-    console.log('oi')
+    console.log('dsad',data)
     formValidationSchema
     .validate(data, { abortEarly: false })
     .then((validateData) => {
@@ -84,6 +84,7 @@ const CityDetail: React.FC = () => {
         }
       })
       .catch((errors: yup.ValidationError) => {
+        console.log(errors)
         const validationErrors: IVFormErrors = {};
 
         errors.inner.forEach((error) => {

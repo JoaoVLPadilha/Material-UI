@@ -14,9 +14,9 @@ export type TTotalCountCity = {
  data: IListCity[]
  totalCount: number
 }
-const getAll = async (page = 1, filter = ''): Promise<TTotalCountCity | Error> =>{
+const getAll = async (page = 1, filter = '', id=''): Promise<TTotalCountCity | Error> =>{
   try {
-    const urlRelative = `/city?_page=${page}&_limit=${Environment.ROW_LIMITS}&name_like=${filter}`
+    const urlRelative = `/city?_page=${page}&_limit=${Environment.ROW_LIMITS}&name_like=${filter}&id_like=${id}`
     const {data, headers} = await Api.get(urlRelative)
     if(data){
       return {
