@@ -3,20 +3,26 @@ import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 import { AppRoutes } from './routes';
 import FirstPage from './shared/components/FirstPage';
+import Login from './shared/components/login/Login';
 import MenuLateral from './shared/components/menu-lateral/MenuLateral';
-import { AppDrawerProvider, AppThemeProvider } from './shared/contexts';
+import {
+  AppDrawerProvider,
+  AppThemeProvider,
+  AuthProvider,
+} from './shared/contexts';
 function App() {
   return (
-    <AppThemeProvider>
-      <AppDrawerProvider>
-        <BrowserRouter>
-          <MenuLateral>
-            {/* <FirstPage/> */}
-            <AppRoutes />
-          </MenuLateral>
-        </BrowserRouter>
-      </AppDrawerProvider>
-    </AppThemeProvider>
+    <AuthProvider>
+      <AppThemeProvider>
+          <AppDrawerProvider>
+            <BrowserRouter>
+              <MenuLateral>
+                <AppRoutes />
+              </MenuLateral>
+            </BrowserRouter>
+          </AppDrawerProvider>
+      </AppThemeProvider>
+    </AuthProvider>
   );
 }
 
