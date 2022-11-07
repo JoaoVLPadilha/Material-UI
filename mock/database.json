@@ -118,5 +118,8 @@
       "name": "Taboão da Serra",
       "id": 7
     }
-  ]
+  ],
+  "auth": {
+    "accessToken": "aaaaaaaa.bbbbbbbbbb.ccccccc"
+  }
 }
